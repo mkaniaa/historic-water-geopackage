@@ -3,16 +3,13 @@ import Checkbox from './Checkbox'
 import {HuePicker, AlphaPicker} from 'react-color'
 import { Input } from 'reactstrap';
 import { connect } from 'react-redux';
-import { checkLayerCheckbox, checkFloodMarksCheckbox, changeTimelineVisibility, changeLayerColor, changeLayerAlpha } from '../store/actions/layersActions'
+import { changeTimelineVisibility } from '../store/actions/floodMarksActions'
+import { checkLayerCheckbox, changeLayerColor, changeLayerAlpha } from '../store/actions/polyLayersActions'
 
 class LayersControls extends Component {
 
-    handlePolyLayerCheckboxChange = (event) => {
+    handleLayerCheckboxChange = (event) => {
         this.props.checkLayerCheckbox(event.target.value, event.target.checked);
-    }
-
-    handlePointLayerCheckboxChange = () => {
-        this.props.checkFloodMarksCheckbox();
     }
 
     handleSelectInputChange = (event) => {
@@ -33,7 +30,7 @@ class LayersControls extends Component {
 
     render() {
 
-        const { layers, checkboxes, checkFloodMarks, colors } = this.props;
+        const { layers, checkboxes, colors } = this.props;
 
         return(
             <div className="layers-controls">
@@ -41,10 +38,10 @@ class LayersControls extends Component {
                 {//Controls for flood marks point-layer
                     <div className='layers-controls'>
                         <Checkbox
-                            value={ 'flood_marks_checkbox' }
+                            value={ 'flood_marks_check' }
                             label={ 'Znaki wielkiej wody' }
-                            handleChange={ this.handlePointLayerCheckboxChange }
-                            checked={ checkFloodMarks }
+                            handleChange={ this.handleLayerCheckboxChange }
+                            checked={ checkboxes.flood_marks_check }
                             key={ 'flood_marks_checkbox' }
                         />
                         <Input 
@@ -52,7 +49,7 @@ class LayersControls extends Component {
                             name="selectFloodMarks" 
                             id="selectFloodMarks" 
                             onChange={ this.handleSelectInputChange }
-                            disabled={ !checkFloodMarks } >
+                            disabled={ !checkboxes.flood_marks_check } >
                                 <option>Pokaż wszystkie</option>
                                 <option>Linia czasu</option>
                         </Input>
@@ -65,7 +62,7 @@ class LayersControls extends Component {
                             <Checkbox
                                 value={ layer.properties.year }
                                 label={ layer.properties.year }
-                                handleChange={ this.handlePolyLayerCheckboxChange }
+                                handleChange={ this.handleLayerCheckboxChange }
                                 checked={ checkboxes[layer.properties.year] }
                                 key={ layer.properties.year + '_checkbox' }
                             />
@@ -92,10 +89,9 @@ class LayersControls extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        layers: state.layers,
-        colors: state.colors,
-        checkboxes: state.checkboxes,
-        checkFloodMarks: state.flood_marks_checked
+        layers: state.polyLayersReducer.layers,
+        colors: state.polyLayersReducer.colors,
+        checkboxes: state.polyLayersReducer.checkboxes
     }
 }
 
@@ -105,7 +101,6 @@ const mapDispatchToProps = (dispatch) => {
         changeLayerColor: (layerName, color) => dispatch(changeLayerColor(layerName, color)),
         changeLayerAlpha: (layerName, color) => dispatch(changeLayerAlpha(layerName, color)),
         checkLayerCheckbox: (value, checked) => dispatch(checkLayerCheckbox(value, checked)),
-        checkFloodMarksCheckbox: () => dispatch(checkFloodMarksCheckbox()),
         changeTimelineVisibility: (value) => dispatch(changeTimelineVisibility(value))
     }
 }

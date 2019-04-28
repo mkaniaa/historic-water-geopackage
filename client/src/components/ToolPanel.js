@@ -55,7 +55,7 @@ class ToolPanel extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        checkboxes: state.checkboxes
+        checkboxes: state.polyLayersReducer.checkboxes
     }
 }
 

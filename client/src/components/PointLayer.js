@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { setTimelineValues } from '../store/actions/layersActions';
 import icon from '../img/flood-mark.png';
 import iconShadow from 'leaflet/dist/images/marker-shadow.png';
 import L from 'leaflet';
 import { Marker, Popup} from 'react-leaflet';
 import HorizontalTimeline from 'react-horizontal-timeline';
+import { setTimelineValues } from '../store/actions/floodMarksActions'
 
 var floodMarkIcon = L.icon({
     iconUrl: icon,
@@ -17,19 +17,20 @@ var floodMarkIcon = L.icon({
 
 class PointLayer extends Component 
 {
+    
     handleIndexClick = (index) => {
         this.props.setTimelineValues(index)
     }
 
     render() {
-        const { floodMarks, floodDate, floodsDates, timelineVisible, valueTimeline } = this.props;
+        const { floodMarks, currentDate, floodDates, timelineVisible, valueTimeline } = this.props;
 
         const timeline =             
             <div className='timeline'>
                 <HorizontalTimeline
                     index={ valueTimeline }
                     indexClick={(index) => { this.handleIndexClick(index) }}
-                    values={ floodsDates }
+                    values={ floodDates }
                 />
             </div>
         
@@ -37,7 +38,7 @@ class PointLayer extends Component
             <div>
                 {
                     floodMarks.map((feature, index) => {
-                        if(floodDate === feature.properties.flood_date) {
+                        if(currentDate === feature.properties.flood_date) {
                             return(
                                 <Marker 
                                     key = {feature.geometry.coordinates.join('_') + '_' + index}
@@ -75,12 +76,12 @@ class PointLayer extends Component
 //Connecting with redux state
 const mapStateToProps = (state) => {
     return {
-        floodMarks: state.flood_marks,
-        floodDate: state.flood_date,
-        floodsDates: state.floods_dates,
-        timelineVisible: state.timelineVisible,
-        checkFloodMarks: state.flood_marks_checked,
-        valueTimeline: state.valueTimeline
+        checkFloodMarks: state.polyLayersReducer.checkboxes.flood_marks_check,
+        floodMarks: state.floodMarksReducer.flood_marks,
+        floodDates: state.floodMarksReducer.flood_dates,
+        currentDate: state.floodMarksReducer.timeline.current_date,
+        timelineVisible: state.floodMarksReducer.timeline.visible,
+        valueTimeline: state.floodMarksReducer.timeline.value
     }
 }
 

@@ -3,7 +3,8 @@ import PolygonLayer from './PolygonLayer'
 import PointLayer from './PointLayer'
 import { connect } from 'react-redux'
 import { Card, CardText } from 'reactstrap';
-import { getPolygonLayersFromBase, getFloodMarksFromBase, setLayersBaseProps } from '../store/actions/layersActions'
+import { getFloodMarksFromBase, setFloodDates } from '../store/actions/floodMarksActions'
+import { getPolygonLayersFromBase, setLayersBaseProps } from '../store/actions/polyLayersActions'
 
 class VectorLayers extends Component {
 
@@ -17,6 +18,7 @@ class VectorLayers extends Component {
     componentDidUpdate() {  
         if(this.props.layers && this.props.checkboxes === null) {
             this.props.setLayersBaseProps();
+            this.props.setFloodDates();
         }
     }
     
@@ -28,7 +30,7 @@ class VectorLayers extends Component {
 
     render() {
 
-        const { layers, colors, checkboxes, checkFloodMarks } = this.props;
+        const { layers, colors, checkboxes } = this.props;
 
         //Rendering only when layers from database are downloaded and ready.
         if (checkboxes == null) {
@@ -55,7 +57,7 @@ class VectorLayers extends Component {
                     ))
                 }
                 { //show point-layer flood dates only if it's checked
-                    checkFloodMarks && ( <PointLayer /> )
+                    checkboxes.flood_marks_check && ( <PointLayer /> )
                 }
                 </div>
             )
@@ -66,10 +68,9 @@ class VectorLayers extends Component {
 //Connecting with redux state
 const mapStateToProps = (state) => {
     return {
-        layers: state.layers,
-        colors: state.colors,
-        checkboxes: state.checkboxes,
-        checkFloodMarks: state.flood_marks_checked
+        layers: state.polyLayersReducer.layers,
+        colors: state.polyLayersReducer.colors,
+        checkboxes: state.polyLayersReducer.checkboxes
     }
 }
 
@@ -78,7 +79,8 @@ const mapDispatchToProps = (dispatch) => {
     return {
         getPolygonLayersFromBase: () => dispatch(getPolygonLayersFromBase()),
         getFloodMarksFromBase: () => dispatch(getFloodMarksFromBase()),
-        setLayersBaseProps: () => dispatch(setLayersBaseProps())
+        setLayersBaseProps: () => dispatch(setLayersBaseProps()),
+        setFloodDates: () => dispatch(setFloodDates())
     }
 }
 
