@@ -3,13 +3,14 @@ import PolygonLayer from './PolygonLayer'
 import PointLayer from './PointLayer'
 import { connect } from 'react-redux'
 import { Card, CardText } from 'reactstrap';
-import { getLayersFromBase, setLayersBaseProps } from '../store/actions/layersActions'
+import { getPolygonLayersFromBase, getFloodMarksFromBase, setLayersBaseProps } from '../store/actions/layersActions'
 
 class VectorLayers extends Component {
 
     //Sending request for getting data from Geopackage data base (from php server)
-    async componentDidMount() {
-       await this.props.getLayersFromBase();
+    componentDidMount() {
+        this.props.getPolygonLayersFromBase();
+        this.props.getFloodMarksFromBase();
     }
 
     //setting base props for layers and flood_dates if they're null
@@ -75,7 +76,8 @@ const mapStateToProps = (state) => {
 //Connecting with redux actions(functions)
 const mapDispatchToProps = (dispatch) => {
     return {
-        getLayersFromBase: () => dispatch(getLayersFromBase()),
+        getPolygonLayersFromBase: () => dispatch(getPolygonLayersFromBase()),
+        getFloodMarksFromBase: () => dispatch(getFloodMarksFromBase()),
         setLayersBaseProps: () => dispatch(setLayersBaseProps())
     }
 }

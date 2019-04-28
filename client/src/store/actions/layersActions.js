@@ -55,19 +55,37 @@ export const changeTimelineVisibility = (value) => {
     }
 }
 
-//Sending request for getting data from Geopackage data base (from php server)
-export const getLayersFromBase = () => {
+//Sending request for getting polygon layers from Geopackage data base (from php server)
+export const getPolygonLayersFromBase = () => {
     return async (dispatch, getState) => {
-        await axios.get(`http://localhost/water-server/GetLayers.php`)
+        await axios.get(`http://localhost/water-server/GetPolygonLayers.php`)
         .then((response) => {
             const layers = response.data
             dispatch({ 
-                type: 'GET_LAYERS_SUCCESS',
+                type: 'GET_POLYGON_LAYERS_SUCCESS',
                 layers });
             })
         .catch(err => {
             dispatch({ 
-                type: 'GET_LAYERS_ERROR' }, 
+                type: 'GET_POLYGON_LAYERS_ERROR' }, 
+                err);
+            });
+    }
+};
+
+//Sending request for getting flood marks from Geopackage data base (from php server)
+export const getFloodMarksFromBase = () => {
+    return async (dispatch, getState) => {
+        await axios.get(`http://localhost/water-server/GetFloodMarks.php`)
+        .then((response) => {
+            const floodMarks = response.data.features
+            dispatch({ 
+                type: 'GET_FLOOD_MARKS_SUCCESS',
+                flood_marks: floodMarks });
+            })
+        .catch(err => {
+            dispatch({ 
+                type: 'GET_FLOOD_MARKS_ERROR' }, 
                 err);
             });
     }

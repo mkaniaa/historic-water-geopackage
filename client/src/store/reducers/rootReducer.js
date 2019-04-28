@@ -1,4 +1,3 @@
-import { FloodMarks } from '../../GeoJSON_layers/flood_marks';
 import update from 'immutability-helper';
 import SortedSet from 'collections/sorted-set';
 
@@ -9,7 +8,7 @@ const initState = {
     dropdownOpen: false,
     flood_marks_checked: false,
     timelineVisible: false,
-    flood_marks: FloodMarks.features,
+    flood_marks: null,
     valueTimeline: 0,
     previousValueTimeline: 0,
     floods_dates: [],
@@ -109,14 +108,25 @@ const rootReducer = (state = initState, action) => {
                 ...state,
                 timelineVisible: false
             }
-        case 'GET_LAYERS_SUCCESS':
-            console.log('Downloading layers from the database successfully completed.')
+        case 'GET_POLYGON_LAYERS_SUCCESS':
+            console.log('Downloading polygon layers from the database successfully completed.')
             return {
                 ...state,
                 layers: action.layers
             }
-        case 'GET_LAYERS_ERROR':
-            console.log('Downloading layers from the database completed with an error: \n' + action.err)
+        case 'GET_POLYGON_LAYERS_ERROR':
+            console.log('Downloading polygon layers from the database completed with an error: \n' + action.err)
+            return {
+                ...state
+            }
+        case 'GET_FLOOD_MARKS_SUCCESS':
+            console.log('Downloading flood marks from the database successfully completed.')
+            return {
+                ...state,
+                flood_marks: action.flood_marks
+            }
+        case 'GET_FLOOD_MARKS_ERROR':
+            console.log('Downloading flood marks from the database completed with an error: \n' + action.err)
             return {
                 ...state
             }
