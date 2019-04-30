@@ -28,6 +28,8 @@ export const checkLayerCheckbox = (value, checked) => {
 }
 
 //Sending request for getting polygon layers from Geopackage data base (from php server)
+// FIXME: to w ogule działa??????
+// FIXME: tutaj musze się skonsultowa bo nie wiem czy to jest poprawnie napisano bo wydaje mi się że jest to trochę bez sensu ale dam ci znać
 export const getPolygonLayersFromBase = () => {
     return async (dispatch) => {
         await axios.get(`http://localhost/water-server/GetPolygonLayers.php`)

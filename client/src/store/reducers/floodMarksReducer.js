@@ -12,12 +12,16 @@ const initState = {
 }
 
 //returning sorted set of floods dates
+// FIXME: arrow function wszędzie, pozatym Var zmieę na consta
+// FIXME: funkja przyjmuje 'unsortedSet' a potem deklarujesz 'datesSet' które jest typu SortedSet co sugeruje że to są te same dane tylko posortowan a nie są. Precyzyjniej nazywaj zmienne
 function getArrayOfFloodDates (unsortedSet) {
+    // FIXME: nie ma potrzeby urzywanie biblioteki `collections` wystarczy natywnego SET`a a na końcu całej funkji ją posortowąć raz co będzie bardziej wydajne.
     var datesSet = new SortedSet();
     const datesArray = [];
     unsortedSet.forEach(function(nextDate) {
         datesSet.add(nextDate.properties.flood_date);
     });
+    // FIXME: nie ma potrzeby robić foricza na SET aby był z tego arrajka wystarczy Array.from(zmienna)
     datesSet.forEach(function(date) {
         datesArray.push(date);
     })
@@ -33,6 +37,7 @@ const floodMarksReducer = (state = initState, action) => {
                 flood_marks: action.flood_marks
             }
         case 'GET_FLOOD_MARKS_ERROR':
+            // FIXME: zamiast var używaj constów lub letów w zależność od potrzeb
             console.log('Downloading flood marks from the database completed with an error: \n' + action.err)
             return {
                 ...state

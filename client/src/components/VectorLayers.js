@@ -65,8 +65,11 @@ class VectorLayers extends Component {
     }
 }
 
+
 //Connecting with redux state
+// FIXME: jak nie  stosujesz żadnej logiki tylko zwracasz obiekt jak w tym przypadku wystarczy (state) => ({ .....}) 
 const mapStateToProps = (state) => {
+    // FIXME: tu wystarczy rozpredować  `state.polyLayersReducer`
     return {
         layers: state.polyLayersReducer.layers,
         colors: state.polyLayersReducer.colors,
@@ -75,6 +78,7 @@ const mapStateToProps = (state) => {
 }
 
 //Connecting with redux actions(functions)
+// FIXME: jak nie  stosujesz żadnej logiki tylko zwracasz obiekt jak w tym przypadku wystarczy (state) => ({ .....}) 
 const mapDispatchToProps = (dispatch) => {
     return {
         getPolygonLayersFromBase: () => dispatch(getPolygonLayersFromBase()),

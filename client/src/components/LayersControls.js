@@ -15,7 +15,9 @@ class LayersControls extends Component {
     handleSelectInputChange = (event) => {
         this.props.changeTimelineVisibility(event.target.value);
     }
-
+    // FIXME: tutaj pomieszałeś style nie jest potrzebny return w tej funkcji 
+    //          wytarczy  = (layerName) => (color) =>  {.....}
+    //          dotyczy tutaj i funkcji nizej
     handleChangeHuePicker = (layerName) => {
         return (color) => {
             this.props.changeLayerColor(layerName, color);
@@ -42,8 +44,9 @@ class LayersControls extends Component {
                             label={ 'Znaki wielkiej wody' }
                             handleChange={ this.handleLayerCheckboxChange }
                             checked={ checkboxes.flood_marks_check }
+                            // FIXME: key tutaj nie jest potrzeby urzwa się go tylko jak mapujesz komponety
                             key={ 'flood_marks_checkbox' }
-                        />
+                            />
                         <Input 
                             type="select" 
                             name="selectFloodMarks" 
@@ -58,22 +61,26 @@ class LayersControls extends Component {
                 
                 {//Controls for all polygon-layers
                     layers.map((layer) => (
+                        // FIXME: oparł bym się r bardziej na indexie jest to drugi argument funcji przekazywane do map chyba że jesteś pewny że year jest atomowy zbędny '_div'
                         <div key= {layer.properties.year + '_div'}>
                             <Checkbox
                                 value={ layer.properties.year }
                                 label={ layer.properties.year }
                                 handleChange={ this.handleLayerCheckboxChange }
                                 checked={ checkboxes[layer.properties.year] }
+                                // FIXME: key tutaj nie jest potrzeby urzwa się go tylko jak mapujesz komponety
                                 key={ layer.properties.year + '_checkbox' }
-                            />
+                                />
                             <HuePicker
                                 className='layer-changer'
+                                // FIXME: key tutaj nie jest potrzeby urzwa się go tylko jak mapujesz komponety
                                 key={ layer.year + '_hue' }
                                 color={ colors[layer.properties.year]}
                                 onChange={ this.handleChangeHuePicker(layer.properties.year) }
-                            />
+                                />
                             <AlphaPicker
                                 className='layer-changer'
+                                // FIXME: key tutaj nie jest potrzeby urzwa się go tylko jak mapujesz komponety
                                 key={ layer.year + '_alpha' }
                                 color={ colors[layer.properties.year] }
                                 onChange={ this.handleChangeAlphaPicker(layer.properties.year) }
