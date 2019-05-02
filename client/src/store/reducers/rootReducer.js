@@ -3,8 +3,8 @@ import floodMarksReducer from './floodMarksReducer'
 import { combineReducers } from 'redux'
 
 const rootReducer = combineReducers({
-    polyLayersReducer,
-    floodMarksReducer
+    polyLayers: polyLayersReducer,
+    floodMarks: floodMarksReducer
 });
 
 export default rootReducer

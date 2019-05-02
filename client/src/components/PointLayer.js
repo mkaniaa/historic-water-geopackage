@@ -7,7 +7,7 @@ import { Marker, Popup} from 'react-leaflet';
 import HorizontalTimeline from 'react-horizontal-timeline';
 import { setTimelineValues } from '../store/actions/floodMarksActions'
 
-var floodMarkIcon = L.icon({
+const floodMarkIcon = L.icon({
     iconUrl: icon,
     iconAnchor: [12.5, 30],
     popupAnchor: [0, -41],
@@ -76,12 +76,12 @@ class PointLayer extends Component
 //Connecting with redux state
 const mapStateToProps = (state) => {
     return {
-        checkFloodMarks: state.polyLayersReducer.checkboxes.flood_marks_check,
-        floodMarks: state.floodMarksReducer.flood_marks,
-        floodDates: state.floodMarksReducer.flood_dates,
-        currentDate: state.floodMarksReducer.timeline.current_date,
-        timelineVisible: state.floodMarksReducer.timeline.visible,
-        valueTimeline: state.floodMarksReducer.timeline.value
+        checkFloodMarks: state.polyLayers.checkboxes.flood_marks_check,
+        floodMarks: state.floodMarks.flood_marks,
+        floodDates: state.floodMarks.flood_dates,
+        currentDate: state.floodMarks.timeline.current_date,
+        timelineVisible: state.floodMarks.timeline.visible,
+        valueTimeline: state.floodMarks.timeline.value
     }
 }
 

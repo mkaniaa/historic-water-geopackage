@@ -16,16 +16,12 @@ class LayersControls extends Component {
         this.props.changeTimelineVisibility(event.target.value);
     }
 
-    handleChangeHuePicker = (layerName) => {
-        return (color) => {
-            this.props.changeLayerColor(layerName, color);
-        }
+    handleChangeHuePicker = (layerName) => (color) => {
+        this.props.changeLayerColor(layerName, color);
     }
 
-    handleChangeAlphaPicker = (layerName) => {
-        return (color) => {
-            this.props.changeLayerAlpha(layerName, color);
-        }
+    handleChangeAlphaPicker = (layerName) => (color) => {
+        this.props.changeLayerAlpha(layerName, color);
     }
 
     render() {
@@ -42,7 +38,6 @@ class LayersControls extends Component {
                             label={ 'Znaki wielkiej wody' }
                             handleChange={ this.handleLayerCheckboxChange }
                             checked={ checkboxes.flood_marks_check }
-                            key={ 'flood_marks_checkbox' }
                         />
                         <Input 
                             type="select" 
@@ -57,8 +52,8 @@ class LayersControls extends Component {
                 }
                 
                 {//Controls for all polygon-layers
-                    layers.map((layer) => (
-                        <div key= {layer.properties.year + '_div'}>
+                    layers.map((layer, index) => (
+                        <div key= { index }>
                             <Checkbox
                                 value={ layer.properties.year }
                                 label={ layer.properties.year }
@@ -68,17 +63,15 @@ class LayersControls extends Component {
                             />
                             <HuePicker
                                 className='layer-changer'
-                                key={ layer.year + '_hue' }
                                 color={ colors[layer.properties.year]}
                                 onChange={ this.handleChangeHuePicker(layer.properties.year) }
                             />
                             <AlphaPicker
                                 className='layer-changer'
-                                key={ layer.year + '_alpha' }
                                 color={ colors[layer.properties.year] }
                                 onChange={ this.handleChangeAlphaPicker(layer.properties.year) }
                             />
-                            <br key={ layer.properties.year + '_space' }/>
+                            <br />
                         </div>
                     ))
                 }
@@ -87,13 +80,9 @@ class LayersControls extends Component {
     }
 }
 
-const mapStateToProps = (state) => {
-    return {
-        layers: state.polyLayersReducer.layers,
-        colors: state.polyLayersReducer.colors,
-        checkboxes: state.polyLayersReducer.checkboxes
-    }
-}
+const mapStateToProps = (state) => ({
+    ...state.polyLayers
+})
 
 //Connecting with redux actions(functions)
 const mapDispatchToProps = (dispatch) => {

@@ -1,8 +1,4 @@
-import SortedSet from 'collections/sorted-set';
-
 const initState = {
-    flood_marks: null,
-    flood_dates: [],
     timeline: {
         visible: false,
         value: 0,
@@ -12,16 +8,13 @@ const initState = {
 }
 
 //returning sorted set of floods dates
-function getArrayOfFloodDates (unsortedSet) {
-    var datesSet = new SortedSet();
-    const datesArray = [];
-    unsortedSet.forEach(function(nextDate) {
-        datesSet.add(nextDate.properties.flood_date);
-    });
-    datesSet.forEach(function(date) {
-        datesArray.push(date);
+const getArrayOfFloodDates = (objectsWithDates) => {
+    const unsortedSet = new Set()
+    objectsWithDates.forEach((object) => {
+        unsortedSet.add(object.properties.flood_date)
     })
-    return datesArray;
+    const sortedSet = Array.from(unsortedSet).sort();
+    return sortedSet
 }
 
 const floodMarksReducer = (state = initState, action) => {
@@ -31,11 +24,6 @@ const floodMarksReducer = (state = initState, action) => {
             return {
                 ...state,
                 flood_marks: action.flood_marks
-            }
-        case 'GET_FLOOD_MARKS_ERROR':
-            console.log('Downloading flood marks from the database completed with an error: \n' + action.err)
-            return {
-                ...state
             }
         case 'SET_FLOOD_DATES':
             return {
@@ -74,7 +62,8 @@ const floodMarksReducer = (state = initState, action) => {
                 ...state,
                 floods_dates: getArrayOfFloodDates(state.flood_marks)
             }
-        default: 
+        default:
+            if(action.err) console.log(action.err);
             return {
                 ...state
             }
