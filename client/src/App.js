@@ -7,16 +7,12 @@ import { Map, TileLayer} from 'react-leaflet';
 
 class App extends Component {
 
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            location: {
-                lat: 50.06,
-                lng: 19.94,
-            },
-            zoom: 13.5
-        } 
+    state = {
+        location: {
+            lat: 50.06,
+            lng: 19.94,
+        },
+        zoom: 13.5
     }
 
     render() {

@@ -19,7 +19,7 @@ class ToolPanel extends Component {
         const { checkboxes } = this.props;
 
         //Rendering controls only when layers from database are downloaded and ready.
-        if (checkboxes == null) {
+        if (!checkboxes) {
             return (
                 <Card body className='layers-card'>
                     <CardTitle>HISTORIC WATER</CardTitle>
@@ -55,7 +55,7 @@ class ToolPanel extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        checkboxes: state.polyLayersReducer.checkboxes
+        checkboxes: state.polyLayers.checkboxes
     }
 }
 
