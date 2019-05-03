@@ -5,9 +5,7 @@ const getLayersProperties = (layers) => {
     const baseColor = {r: 50, g: 50, b: 255, a: 1}
     
     //checking if layers exists
-    if (!layers || !layers.length) {
-    return {};
-    }
+    if (!layers || !layers.length) return {};
 
     //empty new state
     const layerProps = {}

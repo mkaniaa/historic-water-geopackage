@@ -19,7 +19,7 @@ class App extends Component {
         const position = [this.state.location.lat, this.state.location.lng];
         return (               
             <div className='map'>
-                <Map className='map' center={position} zoom={this.state.zoom}>
+                <Map className='map' center={ position } zoom={ this.state.zoom }>
                     <TileLayer className='main-map'
                         url='https://{s}.tile.openstreetmap.se/hydda/full/{z}/{x}/{y}.png'
                         attribution='Tiles courtesy of <a href="http://openstreetmap.se/" target="_blank">OpenStreetMap Sweden</a> 

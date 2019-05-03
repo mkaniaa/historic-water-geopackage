@@ -13,8 +13,7 @@ const getArrayOfFloodDates = (objectsWithDates) => {
     objectsWithDates.forEach((object) => {
         unsortedSet.add(object.properties.flood_date)
     })
-    const sortedSet = Array.from(unsortedSet).sort();
-    return sortedSet
+    return Array.from(unsortedSet).sort();
 }
 
 const floodMarksReducer = (state = initState, action) => {
