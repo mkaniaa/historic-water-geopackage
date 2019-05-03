@@ -1,19 +1,17 @@
 import axios from 'axios';
 
 //Sending request for getting flood marks from Geopackage data base (from php server)
-export const getFloodMarksFromBase = () => {
-    return async (dispatch) => {
-        await axios.get(`http://localhost/water-server/GetFloodMarks.php`)
-        .then((response) => {
-            const floodMarks = response.data.features
-            dispatch({ 
-                type: 'GET_FLOOD_MARKS_SUCCESS',
-                flood_marks: floodMarks });
-            })
-        .catch(err => {
-            dispatch({err});
-            });
-    }
+export const getFloodMarksFromBase = async (dispatch) => {
+    await axios.get(`http://localhost/water-server/GetFloodMarks.php`)
+    .then((response) => {
+        const floodMarks = response.data.features
+        dispatch({ 
+            type: 'GET_FLOOD_MARKS_SUCCESS',
+            flood_marks: floodMarks });
+        })
+    .catch(err => {
+        dispatch({err});
+        });
 }
 
 //Setting current and previous value for timeline

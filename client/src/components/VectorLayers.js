@@ -73,8 +73,8 @@ const mapStateToProps = (state) => ({
 //Connecting with redux actions(functions)
 const mapDispatchToProps = (dispatch) => {
     return {
-        getPolygonLayersFromBase: () => dispatch(getPolygonLayersFromBase()),
-        getFloodMarksFromBase: () => dispatch(getFloodMarksFromBase()),
+        getPolygonLayersFromBase: () => dispatch(getPolygonLayersFromBase),
+        getFloodMarksFromBase: () => dispatch(getFloodMarksFromBase),
         setLayersBaseProps: () => dispatch(setLayersBaseProps()),
         setFloodDates: () => dispatch(setFloodDates())
     }
