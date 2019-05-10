@@ -339,3 +339,5 @@ class GeoPackage
         return ['tables' => $tables];
     }
 }
+
+?>

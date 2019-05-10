@@ -1,7 +1,17 @@
-This project will be done soon. Now you can see the trial version on: http://openhydrology.org/maps/historic-water/
+This project is still in progress. You can see working online trial version on: http://openhydrology.org/maps/historic-water/
 
-The project is a map portal used to visualize spatial changes taking place in time. The application displays vector thematic layers, created by drawing hydrography of Krakow from historical maps from different years. An additional element is a layer showing the location of large watermarks in the city and a time line that allows you to filter the displayed signs in relation to the dates of floods. The tool allows for quick analysis of changes in the state of a given event in time.
+Historic Water is a map portal used to visualize spatial changes taking place in time. The application displays vector thematic layers, created by drawing hydrography of Krakow from historical maps from different years. An additional element is a layer showing the location of flood marks in the city and a time line that allows you to filter the displayed signs in relation to the dates of floods. The tool allows for quick analysis of changes in the state of a given event in time.
 
+Technical informations:
+technologies: JavaScript, HTML5, CSS3, GeoJSON, PHP
+framework: ReactJS + Redux
+database: Geopackage (SQLite database container with support for spatial data)
+vector layers: made in spatial desktop app QGIS 3.6
+source for vector layers: https://dawnemapykrakowa.pl/
+
+To run database server (server folder) you need Apache with SQLite support. Server functions returns vector objects in GeoJSON format in coordinate system OGC:1.3:CRS84 (4326).
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 

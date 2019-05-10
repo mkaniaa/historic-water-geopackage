@@ -9,3 +9,5 @@ $layers = $db->toGeoJSON('flood-marks', 'flood_date', 'height_water', 'inscripti
 header('Content-type:application/json;charset=utf-8');
 header("Access-Control-Allow-Origin: *");
 echo(json_encode($layers));
+
+?>
