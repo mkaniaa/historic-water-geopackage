@@ -1,0 +1,17 @@
+{
+  "files": {
+    "main.css": "/maps/historic-water/static/css/main.571f5c54.chunk.css",
+    "main.js": "/maps/historic-water/static/js/main.e7c4bb30.chunk.js",
+    "main.js.map": "/maps/historic-water/static/js/main.e7c4bb30.chunk.js.map",
+    "runtime~main.js": "/maps/historic-water/static/js/runtime~main.56020fb8.js",
+    "runtime~main.js.map": "/maps/historic-water/static/js/runtime~main.56020fb8.js.map",
+    "static/css/2.4c9455b4.chunk.css": "/maps/historic-water/static/css/2.4c9455b4.chunk.css",
+    "static/js/2.f6821fc1.chunk.js": "/maps/historic-water/static/js/2.f6821fc1.chunk.js",
+    "static/js/2.f6821fc1.chunk.js.map": "/maps/historic-water/static/js/2.f6821fc1.chunk.js.map",
+    "index.html": "/maps/historic-water/index.html",
+    "precache-manifest.8286181df01c9cd2ef471a9bdfbbdffe.js": "/maps/historic-water/precache-manifest.8286181df01c9cd2ef471a9bdfbbdffe.js",
+    "service-worker.js": "/maps/historic-water/service-worker.js",
+    "static/css/2.4c9455b4.chunk.css.map": "/maps/historic-water/static/css/2.4c9455b4.chunk.css.map",
+    "static/css/main.571f5c54.chunk.css.map": "/maps/historic-water/static/css/main.571f5c54.chunk.css.map"
+  }
+}
