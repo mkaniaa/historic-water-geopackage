@@ -25,6 +25,8 @@ class PointLayer extends Component
     render() {
         const { floodMarks, currentDate, floodDates, timelineVisible, valueTimeline } = this.props;
 
+        console.log(floodMarks[1].geometry)
+
         const timeline =             
             <div className='timeline'>
                 <HorizontalTimeline
@@ -38,6 +40,7 @@ class PointLayer extends Component
             <div>
                 {
                     floodMarks.map((feature, index) => {
+                        console.log(feature);
                         if(currentDate === feature.properties.flood_date) {
                             return(
                                 <Marker 

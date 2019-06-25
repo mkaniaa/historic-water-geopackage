@@ -2,7 +2,7 @@ import axios from 'axios';
 
 //Sending request for getting flood marks from Geopackage data base (from php server)
 export const getFloodMarksFromBase = async (dispatch) => {
-    await axios.get(`http://keyboarders.usermd.net/historic-water-server/GetFloodMarks.php`)
+    await axios.get(`http://mkania.sub.com.pl/app/getFloodMarksCollection.php`)
     .then((response) => {
         const floodMarks = response.data.features
         dispatch({ 
