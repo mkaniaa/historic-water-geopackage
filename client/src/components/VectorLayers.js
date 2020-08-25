@@ -30,15 +30,24 @@ class VectorLayers extends Component {
 
     render() {
 
-        const { layers, colors, checkboxes } = this.props;
+        const { layers, colors, checkboxes, error } = this.props;
 
         //Rendering only when layers from database are downloaded and ready.
-        if (!checkboxes) {
+        if (error) {
+            return (
+                <Card className = "loading-layers">
+                    <CardText>
+                        Loading layers from database failed. Vector layers cannot be displayed.
+                    </CardText>   
+                </Card>
+            )
+        }
+        else if (!checkboxes) {
             return (
                 <Card className = "loading-layers">
                     <CardText>
                         Loading layers from database...
-                    </CardText>                
+                    </CardText>             
                 </Card>
             )
         } else {

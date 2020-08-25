@@ -24,6 +24,12 @@ const floodMarksReducer = (state = initState, action) => {
                 ...state,
                 flood_marks: action.flood_marks
             }
+        case 'GET_FLOOD_MARKS_ERROR':
+            console.log('Downloading flood marks from the database failed. ' + action.error)
+            return {
+                ...state,
+                error: true
+            }
         case 'SET_FLOOD_DATES':
             return {
                 ...state,

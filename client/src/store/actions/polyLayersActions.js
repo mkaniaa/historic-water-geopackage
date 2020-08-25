@@ -37,7 +37,9 @@ export const getPolygonLayersFromBase = async (dispatch) => {
             layers });
         })
     .catch(err => {
-        dispatch({err});
+        dispatch({
+            type: 'GET_POLYGON_LAYERS_ERROR',
+            error: err });
         });
 };
 

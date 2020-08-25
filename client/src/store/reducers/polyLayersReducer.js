@@ -36,6 +36,12 @@ const polyLayersReducer = (state = {}, action) => {
                 ...state,
                 layers: action.layers
             }
+        case 'GET_POLYGON_LAYERS_ERROR':
+            console.log('Downloading polygon layers from the database failed. ' + action.error)
+            return {
+                ...state,
+                error: true
+            }
         case 'SET_LAYER_COLOR': 
             const newColor = update(state.colors, {
                 [action.layer_name]: {

@@ -10,7 +10,9 @@ export const getFloodMarksFromBase = async (dispatch) => {
             flood_marks: floodMarks });
         })
     .catch(err => {
-        dispatch({err});
+        dispatch({
+            type: 'GET_FLOOD_MARKS_ERROR',
+            error: err });
         });
 }
 

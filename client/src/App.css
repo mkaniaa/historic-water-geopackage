@@ -55,11 +55,9 @@ body {
 }
 
 .loading-layers {
-	position: absolute;
+	text-align: center;
+	width: 50%;
+	margin: 0 auto;
 	z-index: 405;
-	top: 0;
-	left: 0;
-	min-width: 250px;
-	text-align: left;
-	font-size: 12px;
+	font-size: 18px;
 }
