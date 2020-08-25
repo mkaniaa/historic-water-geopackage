@@ -1,5 +1,9 @@
 <?php
 
+header('Access-Control-Allow-Origin: *');
+header('Access-Control-Allow-Methods: GET, POST, OPTIONS');
+header('Access-Control-Allow-Headers: Origin, Content-Type, X-Auth-Token, X-Requested-With');
+
 require './GeoPackage.php';
 
 // Connecting GeoPackage database
@@ -12,8 +16,6 @@ $attr_columns = "year";
 // Running query
 $polygons = $gpkg->getArrayOfGeoJSONs("water-layers", "fid", $attr_columns);
 
-header('Content-type:application/json;charset=utf-8');
-header("Access-Control-Allow-Origin: *");
 echo(json_encode($polygons));
 
 ?>
