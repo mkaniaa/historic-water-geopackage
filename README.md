@@ -1,4 +1,4 @@
-This project is still in progress. You can see working online trial version on: http://openhydrology.org/maps/historic-water/
+Live version: http://openhydrology.org/maps/historic-water/
 
 Historic Water is a map portal used to visualize spatial changes taking place in time. The application displays vector thematic layers, created by drawing hydrography of Krakow from historical maps from different years. An additional element is a layer showing the location of flood marks in the city and a time line that allows you to filter the displayed signs in relation to the dates of floods. The tool allows for quick analysis of changes in the state of a given event in time.
 
