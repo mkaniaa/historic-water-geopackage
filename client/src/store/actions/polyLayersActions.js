@@ -29,7 +29,7 @@ export const checkLayerCheckbox = (value, checked) => {
 
 //Sending request for getting polygon layers from Geopackage data base (from php server)
 export const getPolygonLayersFromBase = async (dispatch) => {
-    await axios.get(`http://mkania.sub.com.pl/app/getArrayOfPolygonLayers.php`)
+    await axios.get(`https://mkania.sub.com.pl/app/getArrayOfPolygonLayers.php`)
     .then((response) => {
         const layers = response.data
         dispatch({ 
